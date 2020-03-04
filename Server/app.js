@@ -72,7 +72,17 @@ function checkFileType(file, cb) {
 // Initial route
 app.get('/', (req, res) => res.render('index'))
 
-// Upload route
+// Get recipes
+app.get('/recipes', (req, res) => {
+    Recipe.find()
+    .exec()
+    .then(docs => {
+        console.log(docs)
+        res.status(200).json(docs);
+    })
+})
+
+// Upload recipe
 app.post('/upload',upload.single('foodImg'), (req, res) => {
     const recipe = new Recipe({
         _id: new mongoose.Types.ObjectId(),
