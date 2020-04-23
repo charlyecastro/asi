@@ -44,12 +44,18 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true})
 
 // Init app and use middlewares
 const app = express();
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
 app.use('/uploads', express.static('uploads'));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 // Check file type
 function checkFileType(file, cb) {
@@ -69,8 +75,8 @@ function checkFileType(file, cb) {
     }
 }
 
-// Initial route
-app.get('/', (req, res) => res.render('index'))
+// // Initial route
+// app.get('/', (req, res) => res.render('index'))
 
 // Get recipes
 app.get('/recipes', (req, res) => {
@@ -84,6 +90,8 @@ app.get('/recipes', (req, res) => {
 
 // Upload recipe
 app.post('/upload',upload.single('foodImg'), (req, res) => {
+    console.log(req)
+    console.log(req.body)
     const recipe = new Recipe({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
