@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useState } from "react"
+import Layout from "../components/layout"
 
 export default function Publish() {
 
@@ -46,13 +47,13 @@ export default function Publish() {
             .then((data) => {
                 console.log(data);
                 console.log(data[0].foodImg)
-                let imgPath = prefix + data[0].foodImg 
+                let imgPath = prefix + data[0].foodImg
                 setNewImage(imgPath)
             });
     }
 
     return (
-        <div className="container">
+        <Layout>
             <Head>
                 <title>Publish</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -61,15 +62,16 @@ export default function Publish() {
             <main>
 
                 <h1 className="title">
-                    Get ready to publish
-        </h1>
+                    Ready to publish
+                </h1>
 
                 <p className="description">
                     share your recipe with others or family
                 </p>
             </main>
-            <form onSubmit={submitTest}>
-                <div className="form-container">
+            <div className="form-container">
+                <form onSubmit={submitTest}>
+
                     <div>
                         <label>Name of Food</label>
                         <input onChange={e => setName(e.target.value)} name="name" type="text" />
@@ -90,21 +92,12 @@ export default function Publish() {
                         <input onChange={e => setImage(e.target.files[0])} name="foodImage" type="file" />
                     </div>
 
-                    <button>TEST IT</button>
-                </div>
-            </form>
+                    <button>SUBMIT</button>
+                </form>
+            </div>
+            <button onClick={fetchRecipes}>SUBMIT</button>
 
-            <button onClick={fetchRecipes}>Get Recipes</button>
-
-            <img src = {newImage} style = {{width: "300px", height: "100%"}}/>
-            <style jsx>{`
-                .form-container {
-                    margin: auto;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                }
-        `}</style>
-        </div>
+            <img src={newImage} style={{ width: "300px", height: "100%" }} />
+        </Layout>
     )
 }
