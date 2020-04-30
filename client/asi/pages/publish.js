@@ -8,16 +8,23 @@ export default function Publish() {
     const [description, setDescription] = useState('')
     const [author, setAuthor] = useState('')
     const [foodImage, setImage] = useState('')
-    const [newImage, setNewImage] = useState()
+    const [imgPath, setImgpath] = useState('')
+
+    const updateImg = (e) => {
+        setImage(e.target.files[0]);
+        setImgpath(URL.createObjectURL(e.target.files[0]))
+
+        // var reader = new FileReader();
+        // var url = reader.readAsDataURL(foodImage);
+
+        // reader.onloadend = (e) => {
+        //     setImgpath([reader.result])
+        // }
+        // console.log(url)
+    }
 
     const submitTest = (e) => {
         e.preventDefault()
-
-        console.log(name)
-        console.log(description)
-        console.log(author)
-        console.log(foodImage)
-
         const formData = new FormData()
 
         formData.append('name', name)
@@ -35,7 +42,6 @@ export default function Publish() {
             .then((data) => {
                 console.log(data);
             });
-
     }
 
     const fetchRecipes = () => {
@@ -54,65 +60,92 @@ export default function Publish() {
 
     return (
         <Layout>
+
             <Head>
                 <title>Publish</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main>
+            <div className="">
+                <div className="form-container">
+                    <main>
 
-                <h1 className="title">
-                    Ready to publish
+                        <h1 className="title">
+                            Ready to publish
                 </h1>
 
-                <p className="description">
-                    share your recipe with others or family
+
+                        <p className="description">
+                            share your recipe with others or family
                 </p>
-            </main>
-            {/* <div className="form-container"> */}
-            <form onSubmit={submitTest}>
+                    </main>
 
-                <div>
-                    <label>Name of Food</label>
-                    <input onChange={e => setName(e.target.value)} name="name" type="text" />
-                </div>
+                    <img className="form-banner" src={imgPath} />
+                    <form onSubmit={submitTest}>
 
-                <div>
-                    <label>Description</label>
-                    <input onChange={e => setDescription(e.target.value)} name="description" type="text" />
-                </div>
-
-                <div>
-                    <label>Author</label>
-                    <input onChange={e => setAuthor(e.target.value)} name="author" type="text" />
-                </div>
-
-                <div>
-                    <label>Food Image</label>
-                    <input onChange={e => setImage(e.target.files[0])} name="foodImage" type="file" />
-                </div>
-                <h2>Share As</h2>
-                <div>
-                    <input type="radio" id="male" name="gender" value="male" />
-                    <label for="male">Private</label>
-                </div>
-                <div>
-                    <input type="radio" id="female" name="gender" value="female" />
-                    <label for="female">Public</label>
-                </div>
-                <div>
-                    <h2>Ingredients</h2>
-                    <input/>
-                    <button>add ingredient</button>
-                </div>
+                        <div>
+                            <div />
+                            {/* <label>Food Image</label> */}
+                            <input onChange={e => updateImg(e)} name="foodImage" type="file" />
+                        </div>
 
 
-                <button className = "submit">SUBMIT</button>
-            </form>
-            {/* </div> */}
-            {/* <button onClick={fetchRecipes}>SUBMIT</button> */}
 
-            {/* <img src={newImage} style={{ width: "300px", height: "100%" }} /> */}
+                        <div>
+                            <label>Name of Food</label>
+                            <input onChange={e => setName(e.target.value)} name="name" type="text" />
+                        </div>
+
+                        <div>
+                            <label>Description</label>
+                            <input onChange={e => setDescription(e.target.value)} name="description" type="text" />
+                        </div>
+
+                        <label>Category</label>
+                        <div>
+                            <label class="container">Breakfast
+                        <input type="checkbox" />
+                            </label>
+                            <label class="container">Lunch
+                        <input type="checkbox" />
+                            </label>
+                            <label class="container">Dinner
+                        <input type="checkbox" />
+                            </label>
+                            <label class="container">Brunch
+                        <input type="checkbox" />
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>Author</label>
+                            <input onChange={e => setAuthor(e.target.value)} name="author" type="text" />
+                        </div>
+
+
+                        <label>Share As</label>
+                        <div className="radio-pair">
+                            <input type="radio" id="male" name="gender" value="male" />
+                            <label htmlFor="male">Private</label>
+                        </div>
+                        <div className="radio-pair">
+                            <input type="radio" id="female" name="gender" value="female" />
+                            <label htmlFor="female">Public</label>
+                        </div>
+                        <div>
+                            <label>Ingredients</label>
+                            <input name="ingredient" type="text" />
+                            <button className="add-btn">+</button>
+                        </div>
+
+
+                        <button className="submit">SUBMIT</button>
+                    </form>
+                </div>
+                {/* <button onClick={fetchRecipes}>SUBMIT</button> */}
+
+                {/* <img src={newImage} style={{ width: "300px", height: "100%" }} /> */}
+            </div>
         </Layout>
     )
 }
