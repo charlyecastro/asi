@@ -69,35 +69,50 @@ export default function Publish() {
                     share your recipe with others or family
                 </p>
             </main>
-            <div className="form-container">
-                <form onSubmit={submitTest}>
+            {/* <div className="form-container"> */}
+            <form onSubmit={submitTest}>
 
-                    <div>
-                        <label>Name of Food</label>
-                        <input onChange={e => setName(e.target.value)} name="name" type="text" />
-                    </div>
+                <div>
+                    <label>Name of Food</label>
+                    <input onChange={e => setName(e.target.value)} name="name" type="text" />
+                </div>
 
-                    <div>
-                        <label>Description</label>
-                        <input onChange={e => setDescription(e.target.value)} name="description" type="text" />
-                    </div>
+                <div>
+                    <label>Description</label>
+                    <input onChange={e => setDescription(e.target.value)} name="description" type="text" />
+                </div>
 
-                    <div>
-                        <label>Author</label>
-                        <input onChange={e => setAuthor(e.target.value)} name="author" type="text" />
-                    </div>
+                <div>
+                    <label>Author</label>
+                    <input onChange={e => setAuthor(e.target.value)} name="author" type="text" />
+                </div>
 
-                    <div>
-                        <label>Food Image</label>
-                        <input onChange={e => setImage(e.target.files[0])} name="foodImage" type="file" />
-                    </div>
+                <div>
+                    <label>Food Image</label>
+                    <input onChange={e => setImage(e.target.files[0])} name="foodImage" type="file" />
+                </div>
+                <h2>Share As</h2>
+                <div>
+                    <input type="radio" id="male" name="gender" value="male" />
+                    <label for="male">Private</label>
+                </div>
+                <div>
+                    <input type="radio" id="female" name="gender" value="female" />
+                    <label for="female">Public</label>
+                </div>
+                <div>
+                    <h2>Ingredients</h2>
+                    <input/>
+                    <button>add ingredient</button>
+                </div>
 
-                    <button>SUBMIT</button>
-                </form>
-            </div>
-            <button onClick={fetchRecipes}>SUBMIT</button>
 
-            <img src={newImage} style={{ width: "300px", height: "100%" }} />
+                <button className = "submit">SUBMIT</button>
+            </form>
+            {/* </div> */}
+            {/* <button onClick={fetchRecipes}>SUBMIT</button> */}
+
+            {/* <img src={newImage} style={{ width: "300px", height: "100%" }} /> */}
         </Layout>
     )
 }
