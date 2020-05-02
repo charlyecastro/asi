@@ -9,18 +9,22 @@ export default function Publish() {
     const [author, setAuthor] = useState('')
     const [foodImage, setImage] = useState('')
     const [imgPath, setImgpath] = useState('')
+    const [inputList, setInputList] = useState([" "])
 
     const updateImg = (e) => {
         setImage(e.target.files[0]);
         setImgpath(URL.createObjectURL(e.target.files[0]))
+    }
 
-        // var reader = new FileReader();
-        // var url = reader.readAsDataURL(foodImage);
+    const updateList = () => {
+        setInputList(inputList => [...inputList, " "])
+    }
 
-        // reader.onloadend = (e) => {
-        //     setImgpath([reader.result])
-        // }
-        // console.log(url)
+    const updateContentList = index => e => {
+        let updatedArray = Array.from(inputList)
+        updatedArray[index] = e.target.value
+        setInputList(updatedArray)
+        console.log(updatedArray)
     }
 
     const submitTest = (e) => {
@@ -69,33 +73,22 @@ export default function Publish() {
             <div className="">
                 <div className="form-container">
                     <main>
-
                         <h1 className="title">
-                            Ready to publish
-                </h1>
-
-
+                            Ready to publish </h1>
                         <p className="description">
                             share your recipe with others or family
-                </p>
+        </p>
                     </main>
-
                     <img className="form-banner" src={imgPath} />
                     <form onSubmit={submitTest}>
-
                         <div>
                             <div />
-                            {/* <label>Food Image</label> */}
                             <input onChange={e => updateImg(e)} name="foodImage" type="file" />
                         </div>
-
-
-
                         <div>
                             <label>Name of Food</label>
                             <input onChange={e => setName(e.target.value)} name="name" type="text" />
                         </div>
-
                         <div>
                             <label>Description</label>
                             <input onChange={e => setDescription(e.target.value)} name="description" type="text" />
@@ -103,17 +96,17 @@ export default function Publish() {
 
                         <label>Category</label>
                         <div>
-                            <label class="container">Breakfast
-                        <input type="checkbox" />
+                            <label className="container">Breakfast
+                <input type="checkbox" />
                             </label>
-                            <label class="container">Lunch
-                        <input type="checkbox" />
+                            <label className="container">Lunch
+                <input type="checkbox" />
                             </label>
-                            <label class="container">Dinner
-                        <input type="checkbox" />
+                            <label className="container">Dinner
+                <input type="checkbox" />
                             </label>
-                            <label class="container">Brunch
-                        <input type="checkbox" />
+                            <label className="container">Brunch
+                <input type="checkbox" />
                             </label>
                         </div>
 
@@ -121,8 +114,6 @@ export default function Publish() {
                             <label>Author</label>
                             <input onChange={e => setAuthor(e.target.value)} name="author" type="text" />
                         </div>
-
-
                         <label>Share As</label>
                         <div className="radio-pair">
                             <input type="radio" id="male" name="gender" value="male" />
@@ -133,18 +124,26 @@ export default function Publish() {
                             <label htmlFor="female">Public</label>
                         </div>
                         <div>
-                            <label>Ingredients</label>
-                            <input name="ingredient" type="text" />
-                            <button className="add-btn">+</button>
+ 
+                            {inputList
+                            .map((val, index) => {
+                                return <input name="ingredient" type="text" key = {index} 
+                                onChange = { 
+                                    updateContentList(index)
+                                }
+                                /> 
+                            })}
+                            <button type ="button" className="add-btn" onClick = {updateList}>+</button>
                         </div>
-
-
                         <button className="submit">SUBMIT</button>
                     </form>
                 </div>
                 {/* <button onClick={fetchRecipes}>SUBMIT</button> */}
 
                 {/* <img src={newImage} style={{ width: "300px", height: "100%" }} /> */}
+
+                                           {/* <label>Ingredients</label>
+                            <input name="ingredient" type="text" /> */}
             </div>
         </Layout>
     )

@@ -49,10 +49,10 @@ header nav menu ul li {
 
 .form-banner {
   border-radius: 25px;
-  max-height: 300px;
+  max-height: 400px;
   width: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .home-banner {
