@@ -96,8 +96,13 @@ app.post('/upload',upload.single('foodImg'), (req, res) => {
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         description: req.body.description,
+        private: { type: Boolean, default: false },
+        members: [],
+        ingredients: [],
+        directions: [],
         author: req.body.author,
-        foodImg: req.file.path
+        foodImg: req.file.path,
+        createdAt: { type: Date, default: Date.now },
     })
     recipe.save()
     .then(result => {
