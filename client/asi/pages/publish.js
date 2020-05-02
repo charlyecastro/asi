@@ -24,17 +24,19 @@ export default function Publish() {
         let updatedArray = Array.from(inputList)
         updatedArray[index] = e.target.value
         setInputList(updatedArray)
-        console.log(updatedArray)
     }
 
     const submitTest = (e) => {
         e.preventDefault()
+        
         const formData = new FormData()
 
         formData.append('name', name)
         formData.append('description', description)
         formData.append('author', author)
+        formData.append('ingredients', JSON.stringify(inputList))
         formData.append('foodImg', foodImage)
+        console.log(inputList)
 
         fetch('http://localhost:80/upload', {
             method: 'POST',
@@ -45,20 +47,6 @@ export default function Publish() {
             })
             .then((data) => {
                 console.log(data);
-            });
-    }
-
-    const fetchRecipes = () => {
-        const prefix = "http://localhost:80/"
-        fetch('http://localhost:80/recipes')
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-                console.log(data[0].foodImg)
-                let imgPath = prefix + data[0].foodImg
-                setNewImage(imgPath)
             });
     }
 
@@ -138,12 +126,6 @@ export default function Publish() {
                         <button className="submit">SUBMIT</button>
                     </form>
                 </div>
-                {/* <button onClick={fetchRecipes}>SUBMIT</button> */}
-
-                {/* <img src={newImage} style={{ width: "300px", height: "100%" }} /> */}
-
-                                           {/* <label>Ingredients</label>
-                            <input name="ingredient" type="text" /> */}
             </div>
         </Layout>
     )
