@@ -132,3 +132,27 @@ h1 {
 h3{
     margin: .5rem;
 }
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 2rem;
+    padding: 2rem;
+}
+
+.recipe-card{
+    box-shadow: $shadow;
+    border-radius: 0px 0px 10px 10px;
+    img{
+        height: 150px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px 10px 0px 0px;
+    }
+    .recipe-card-text{
+        padding: 1rem;
+        h2{
+            margin: 0;
+        }
+    }
+}

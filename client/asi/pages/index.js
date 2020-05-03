@@ -1,39 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Axios from 'axios';
 import Layout from "../components/layout"
+import RecipeCard from "../components/recipeCard"
 
-function Home() {
+const Home = () => {
 
-  const [recipes, setRecipes] = useState([])
-
-  const updateRecipes = (data) => {
-    setRecipes(data)
-    console.log(data)
-    console.log(recipes)
-  }
-
-  const fetchRecipes = () => {
-    Axios.get("http://localhost:80/recipes")
-      .then(res => {
-        console.log(res)
-        return res.data
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .then(data => {
-        updateRecipes(data)
-      })
-  }
+  const [allRecipes, setAllRecipes] = useState([' '])
 
   useEffect(() => {
-    fetchRecipes()
+    fetch('http://localhost:80/recipes', {
+      method: 'GET',
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data)
+        setAllRecipes(data)
+      });
   }, []);
-
-
-
-
 
   return (
     <Layout>
@@ -53,12 +39,17 @@ function Home() {
 
       </main>
       <h4>Recipes</h4>
-      {
-        recipes.map(val => {
-          <p>{val.name}</p>
-        })
-      }
+      <div className="grid">
 
+        {
+          allRecipes.map((val) => {
+            return (
+              <RecipeCard key = {val._id} data = {val}/>
+            )
+
+          })
+        }
+      </div>
       <footer>
 
       </footer>
