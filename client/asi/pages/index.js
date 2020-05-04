@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head'
-import Axios from 'axios';
 import Layout from "../components/layout"
 import RecipeCard from "../components/recipeCard"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -25,26 +24,20 @@ const Home = () => {
 
   return (
     <Layout>
-
       <Head>
         <title>ASI</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <div className="home-banner">
         <h1 className = "hero-text"> Share Your Food</h1>
         <h3> Explore food, store food and learn more about food</h3>
         <div className="search-container">
           <input placeholder="search food" /> 
           <button type = "submit"><FontAwesomeIcon icon={faSearch} size='2x' className = "icon"/></button>
-          
-
-
         </div>
       </div>
-
       <main>
-        <h1>Recipes	&#128523;</h1>
+        <h2>Recipes	&#128523;</h2>
         	{/* 128524	 */}
 
         <div className="grid">
@@ -58,9 +51,7 @@ const Home = () => {
           }
         </div>
       </main>
-
       <footer>
-
       </footer>
     </Layout>
   )
