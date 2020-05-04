@@ -3,6 +3,8 @@ import Head from 'next/head'
 import Axios from 'axios';
 import Layout from "../components/layout"
 import RecipeCard from "../components/recipeCard"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
 
@@ -30,26 +32,33 @@ const Home = () => {
       </Head>
 
       <div className="home-banner">
-        <h1> Share Your Food</h1>
+        <h1 className = "hero-text"> Share Your Food</h1>
         <h3> Explore food, store food and learn more about food</h3>
-        <input placeholder="search food" />
+        <div className="search-container">
+          <input placeholder="search food" /> 
+          <button type = "submit"><FontAwesomeIcon icon={faSearch} size='2x' className = "icon"/></button>
+          
+
+
+        </div>
       </div>
 
       <main>
+        <h1>Recipes	&#128523;</h1>
+        	{/* 128524	 */}
 
+        <div className="grid">
+
+          {
+            allRecipes.map((val) => {
+              return (
+                <RecipeCard key={val._id} data={val} />
+              )
+            })
+          }
+        </div>
       </main>
-      <h4>Recipes</h4>
-      <div className="grid">
 
-        {
-          allRecipes.map((val) => {
-            return (
-              <RecipeCard key = {val._id} data = {val}/>
-            )
-
-          })
-        }
-      </div>
       <footer>
 
       </footer>

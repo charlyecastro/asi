@@ -1,8 +1,11 @@
 
 @import url('https://fonts.googleapis.com/css?family=Neuton:300,400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 $head-font-family: 'Neuton', serif;
+$body-font-family: 'Roboto', sans-serif;
 $shadow: 0px 13px 30px 0px rgba(0,0,0,0.2);
+$dark-shadow: 4px 20px 30px 0px rgba(0,0,0,0.3);
 // $primary-color: #4AA2A9;
 $primary-color: #6DC5CC;
 
@@ -15,6 +18,14 @@ $primary-color: #6DC5CC;
 #logo{
     font-family: $head-font-family;
     font-weight: lighter;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
 }
 
 header{
@@ -65,21 +76,38 @@ header{
     justify-content: center;
     align-items: center;
     border-radius: 25px;
-    input {
+    margin-bottom: 3rem;
+    .search-container {
         position: absolute;
         bottom: 0;
         transform: translateY(50%);
-        max-width: 500px;
-        font-size: 28px;
-        padding: 1rem;
-        border: none;
-        border-radius: 10px;
-        box-shadow: $shadow;
-        &::placeholder{
-            font-weight: 200;
-            color: rgba(0,0,0,0.3);
+        input{
+            max-width: 500px;
+            font-size: 28px;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px 0px 0px 10px;
+            box-shadow: $shadow;
+            &::placeholder{
+                font-weight: 200;
+                color: rgba(0,0,0,0.3);
+            }
         }
+        button{
+            border: none;
+            min-width: 50px;
+            color: black;
+            font-size: 28px;
+            padding: 1rem;
+            border-radius: 0px 10px 10px 0px;
+            box-shadow: $shadow;
+        }
+
     }
+}
+
+.icon{
+    color: black
 }
 
 .form-container{
@@ -122,27 +150,36 @@ input[type=file] {
     font-size: 1rem;
 }
 
-h1 {
+.hero-text{
     font-family: $head-font-family;
     font-size: 6rem;
     font-weight: 300;
     margin: 1rem;
 }
 
+p{
+    font-family: $body-font-family;
+}
+
 h3{
     margin: .5rem;
 }
 
+.main-container{
+    padding: 2rem;
+}
+
 .grid{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 2rem;
-    padding: 2rem;
+    
 }
 
 .recipe-card{
     box-shadow: $shadow;
     border-radius: 0px 0px 10px 10px;
+    transition: .5s;
     img{
         height: 150px;
         width: 100%;
@@ -152,7 +189,15 @@ h3{
     .recipe-card-text{
         padding: 1rem;
         h2{
+            font-weight: 300;
             margin: 0;
         }
+        p{
+            color: rgba(0,0,0,0.5);
+        }
+    }
+
+    &:hover{
+        box-shadow: $dark-shadow;
     }
 }
