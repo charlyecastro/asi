@@ -63,11 +63,12 @@ button {
 
 .add-btn {
   border-radius: 40px;
+  width: 40px;
+  height: 40px;
   background-color: #6DC5CC;
   color: white;
   border: none;
   font-size: 1rem;
-  padding: 1rem;
 }
 
 .form-banner {
@@ -164,6 +165,36 @@ button {
           box-shadow: 0px 13px 30px 0px rgba(0, 0, 0, 0.2);
 }
 
+input::-webkit-input-placeholder {
+  opacity: .4;
+}
+
+input:-ms-input-placeholder {
+  opacity: .4;
+}
+
+input::-ms-input-placeholder {
+  opacity: .4;
+}
+
+input::placeholder {
+  opacity: .4;
+}
+
+.input-item {
+  margin-top: 1rem;
+}
+
+.input-item label {
+  font-size: 1.2rem;
+}
+
+.input-item input, .input-item .container {
+  margin: .8rem 0;
+  color: c2c2c2;
+  font-weight: 300;
+}
+
 .icon {
   color: black;
 }
@@ -178,15 +209,38 @@ form {
 }
 
 form .submit {
-  padding: 16px 24px;
+  padding: 1rem 1.5rem;
   background-color: #6DC5CC;
   color: white;
-  font-size: 1.5rem;
-  border-radius: 15px;
+  font-size: 1rem;
+  border-radius: 10px;
 }
 
-form .radio-pair label {
+.check-group label {
+  margin-left: 5px;
+  margin-right: 10px;
+  font-size: 14px;
+  color: #2c2c2c;
+  font-weight: 200;
+  font-family: "Roboto", sans-serif;
+}
+
+.radio-pair {
+  margin-top: 5px;
+}
+
+.radio-pair input {
+  margin: 0;
+  margin-top: 5px;
+}
+
+.radio-pair label {
+  font-family: "Roboto", sans-serif;
   display: inline;
+  margin-left: 5px;
+  font-size: 14px;
+  color: #2c2c2c;
+  font-weight: 200;
 }
 
 .label-style {
@@ -195,7 +249,8 @@ form .radio-pair label {
 
 input[type=text] {
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 16px;
+  font-weight: 200px;
   outline: 0;
   border-width: 0 0 2px;
 }
