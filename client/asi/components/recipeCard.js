@@ -2,11 +2,11 @@ import React from "react"
 import PropTypes from "prop-types"
 import Link from 'next/link'
 
-const RecipeCard = ({ data: { foodImg, name, author } }) => {
+const RecipeCard = ({ data: { _id,foodImg, name, author } }) => {
 
     return (
         
-            <Link href="/recipe">
+            <Link href = "recipe/[slug]" as= {`/recipe/${_id}`}>
                 <a className="recipe-card">
                     <img src={`http://localhost:80/${foodImg}`} />
                     <div className="recipe-card-text">

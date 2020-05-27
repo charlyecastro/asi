@@ -75,16 +75,27 @@ function checkFileType(file, cb) {
     }
 }
 
-// // Initial route
-// app.get('/', (req, res) => res.render('index'))
-
-// Get recipes
+// Get all recipes
 app.get('/recipes', (req, res) => {
     Recipe.find()
     .exec()
     .then(docs => {
         console.log(docs)
         res.status(200).json(docs);
+    })
+})
+
+app.get('/recipes/:slug', (req, res) => {
+    let recipeID = req.params.slug
+    Recipe.findOne({_id: recipeID})
+    .exec()
+    .then(doc => {
+        console.log(doc)
+        res.status(200).json(doc);
+    })
+    .catch((err) => {
+        console.log(err)
+        res.status(500)
     })
 })
 
