@@ -6,10 +6,14 @@ const express = require('express');
 const multer = require('multer');
 const morgan = require("morgan");
 const bodyParser = require("body-parser")
-const ejs = require('ejs');
 const path = require('path');
 const mongoose = require("mongoose");
 const Recipe = require("./models/recipe")
+const passport = require('passport')
+const cookieSession = require('cookie-session')
+const cookieParser = require("cookie-parser");
+
+require('./passport/google-setup');
 
 // Set multer storage
 const storage = multer.diskStorage({
@@ -44,12 +48,22 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true})
 
 // Init app and use middlewares
 const app = express();
-// app.set('view engine', 'ejs');
 app.use('/uploads', express.static('uploads'));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(cookieSession({ 
+    name: "session",
+    keys: ["thisappisawesome"],
+    maxAge: 24 * 60 * 60 * 100
+}))
+
+app.use(cookieParser())
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
@@ -77,6 +91,7 @@ function checkFileType(file, cb) {
 
 // Get all recipes
 app.get('/recipes', (req, res) => {
+    // console.log(req.user)
     Recipe.find()
     .exec()
     .then(docs => {
@@ -127,7 +142,15 @@ app.post('/upload',upload.single('foodImg'), (req, res) => {
     })
 });
 
-// Server listening
+app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('http://localhost:3000');
+  }
+);
+
 app.listen(port,() => {
     console.log("server is running on port " + port); 
 })

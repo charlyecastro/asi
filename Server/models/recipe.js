@@ -9,6 +9,7 @@ const recipeSchema = mongoose.Schema({
     members: [],
     ingredients: [],
     directions:[],
+    
     foodImg: {type: String, required : true},
     categoryList: [String],
     createdAt: { type: Date, default: Date.now },
