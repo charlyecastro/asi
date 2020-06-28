@@ -2,6 +2,12 @@
 import Link from 'next/link'
 
 export default function Home() {
+
+    const handleSignInClick = () => {
+        // Authenticate using via passport api in the backend
+        // Open Twitter login page
+        window.open("http://localhost/google", "_self");
+      };
     return (
         <header>
             <nav>
@@ -16,6 +22,8 @@ export default function Home() {
                         <Link href="/publish">
                             <a className="nav-link">publish</a>
                         </Link>
+                        <li > <a className="nav-link" onClick={handleSignInClick}>Sign In </a> </li>
+
                     </ul>
                 </menu>
             </nav>

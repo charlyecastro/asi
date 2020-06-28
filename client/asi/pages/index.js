@@ -7,11 +7,17 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
 
-  const [allRecipes, setAllRecipes] = useState([' '])
+  const [allRecipes, setAllRecipes] = useState([])
 
   useEffect(() => {
     fetch('http://localhost:80/recipes', {
       method: 'GET',
+      withCredentials: true,
+      // credentials: 'include',
+      // headers: {
+      //   'Accept': 'application/json',
+      //   'Content-Type': 'application/json'
+      // },
     })
       .then((response) => {
         return response.json();
