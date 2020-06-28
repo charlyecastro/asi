@@ -10,8 +10,6 @@ docker push charlyecastro/cookbook
 # export addresses
 export NODEADDR="node:80"
 export MONGOADDR="mongodemo:27017"
-export GOOGLE_CLIENT_ID = "30938520250-3ae6r37hr1cq9hjm4193f8721gcshldg.apps.googleusercontent.com"
-export GOOGLE_CLIENT_SECRET = "SnrEaV6s79on7mz6vpCuyQfs"
 
 # pull latest docker image
 docker pull charlyecastro/cookbook
