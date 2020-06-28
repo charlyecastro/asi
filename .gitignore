@@ -1,4 +1,5 @@
 devDeploy.sh
+/devDeploy.sh
 /Server/keys/
 /client/asi/node_modules
 /client/asi/package-lock.json
