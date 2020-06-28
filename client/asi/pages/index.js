@@ -13,11 +13,11 @@ const Home = () => {
     fetch('http://localhost:80/recipes', {
       method: 'GET',
       withCredentials: true,
-      // credentials: 'include',
-      // headers: {
-      //   'Accept': 'application/json',
-      //   'Content-Type': 'application/json'
-      // },
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
     })
       .then((response) => {
         return response.json();
