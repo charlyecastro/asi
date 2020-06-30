@@ -4,14 +4,15 @@ Full Stack App to help people share and have access to recipes.
 <img src = "./assets/homepage.png" alt = "Screenshot of asi homepage"/>
 
 ## TOOLS
-React
-Next.js
-SCSS
-Node.js
-Passport.js
-Express
-MongoDB
-Docker
+- [React](https://reactjs.org/)
+- [Next](https://nextjs.org/)
+- [SASS](https://sass-lang.com/)
+- [node](https://nodejs.org/en/)
+- [passport](http://www.passportjs.org/)
+- [express](https://expressjs.com/)
+- [mongodb](https://www.mongodb.com/)
+- [Docker](https://www.docker.com/)
+- [NPM](https://www.npmjs.com/)
 
 
 ## WHAT
